@@ -1,0 +1,42 @@
+--------------------- DML PROYECTO -----------------------------------
+
+INSERT INTO rol VALUES (1,'administrador');
+INSERT INTO rol VALUES (2,'Estudiante');
+INSERT INTO rol VALUES (3,'Externo');
+
+INSERT INTO tipo_documento VALUES (1,'C.C');
+INSERT INTO tipo_documento VALUES (2,'T.I');
+INSERT INTO tipo_documento VALUES (3,'R.C');
+
+INSERT INTO tipo_peticionario VALUES (1,'rector',1,1);
+INSERT INTO tipo_peticionario VALUES (2,'secretaria',1,1);
+INSERT INTO tipo_peticionario VALUES (3,'coordinador',1,1);
+INSERT INTO tipo_peticionario VALUES (4,'estudiante',2,2);
+INSERT INTO tipo_peticionario VALUES (5,'persona externa',3,1);
+
+
+INSERT INTO usuario VALUES (1,'secre123',MD5("1001049173"),2);
+INSERT INTO usuario VALUES (2,'estu456',MD5("52745672"),4);
+INSERT INTO usuario VALUES (3,'luis789',MD5("800356912"),5);
+INSERT INTO usuario VALUES (1, rector675, MD5(100456892),1);
+
+INSERT INTO tipo_solicitud VALUES (1,'peticion');
+INSERT INTO tipo_solicitud VALUES (2,'queja');
+INSERT INTO tipo_solicitud VALUES (3,'reclamo');
+INSERT INTO tipo_solicitud VALUES (4,'solicitud');
+
+INSERT INTO tipo_peticion VALUES (1,'consulta');
+INSERT INTO tipo_peticion VALUES (2,'interes general o paticular');
+INSERT INTO tipo_peticion VALUES (3,'informacion y documentacion');
+
+INSERT INTO solicitud VALUES (1,'2021/06/13','13:34:00','asunto1','archivo1','2021/05/28',2,NULL,2);
+INSERT INTO solicitud VALUES (2,'2021/06/25','10:20:00','asunto2','archivo2','2021/07/10',1,NULL,4);
+
+INSERT INTO registro_respuestasolicitud VALUES (1,'respuesta1','archivorespuesta1','14:56:00','2021/05/15',1,1);
+INSERT INTO registro_respuestasolicitud VALUES (2,'respuesta2','archivorespuesta2','11:20:00','2021/07/01',4,2);
+
+
+UPDATE solicitud set idtipopeticion=3 where idsolicitud=2;
+UPDATE solicitud set idusuario_remitente=3 where idsolicitud=2;
+
+

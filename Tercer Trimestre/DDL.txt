@@ -1,0 +1,71 @@
+---------------- DDL PROYECTO -------------------------
+
+create DATABASE proyecto;
+
+create table rol(
+idRol int not null primary key, 
+rol varchar(45) not null
+);
+
+create table tipo_documento(
+idtipodocumento int not null primary key, 
+tipodocumento varchar(45) not null
+);
+
+create table tipo_peticionario(
+idpeticionario int not null primary key,
+peticionario varchar (45) not null, 
+idRol int not null, 
+idtipodocumento int not null,
+
+foreign key (idRol) references rol (idRol),
+foreign key (idtipodocumento) references tipo_documento(idtipodocumento)
+);
+
+create table usuario(
+idusuario int not null primary key, 
+usuario varchar(45) not null, 
+contraseña varchar(30) not null,
+idpeticionario int not null, 
+
+foreign key (idpeticionario) references tipo_peticionario 
+	    (idpeticionario) );
+
+create table tipo_solicitud(
+idtiposolicitud int not null primary key, 
+tiposolicitud varchar(45) not null
+);
+
+create table tipo_peticion(
+idtipopeticion int not null primary key, 
+tipopeticion varchar(45) not null
+);
+
+create table Solicitud(
+idsolicitud int not null primary key, 
+fechaenvio date not null, 
+horaenvio time not null, 
+asunto varchar(45) not null, 
+archivoadjunto varchar(45),
+tiemporespuesta date not null, 
+idtiposolicitud int not null,
+idtipopeticion int,
+idusuario_remitente int not null,
+
+foreign key (idtiposolicitud) references tipo_solicitud (idtiposolicitud),
+foreign key (idtipopeticion) references tipo_peticion(idtipopeticion),
+foreign key (idusuario_remitente) references usuario (idusuario)
+);
+
+create table Registro_respuestaSolicitud (
+idrespuestasolicitud int not null primary key,
+respuestasolicitud varchar(45) not null, 
+archivorespuesta varchar(45) not null,
+horaRespuesta time not null, 
+fechaRespuesta date not null,
+idusuario_destinatario int not null,
+idsolicitud int not null,
+
+foreign key (idusuario_destinatario) references usuario (idusuario),
+foreign key (idsolicitud) references Solicitud (idsolicitud)
+);
